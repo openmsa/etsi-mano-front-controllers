@@ -16,19 +16,22 @@
  */
 package com.ubiqube.etsi.mano.controller.nsfm;
 
-import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
+import com.ubiqube.etsi.mano.dao.mano.alarm.AckState;
+
+import jakarta.annotation.Nullable;
+
 public interface NsAlarmFrontController {
 
-	<U> ResponseEntity<U> findById(UUID safeUUID, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<U> findById(UUID id, Class<U> clazz, Consumer<U> makeLinks);
 
-	<U> ResponseEntity<U> patch(String alarmId, Object body, Class<U> clazz);
+	<U> ResponseEntity<U> patch(String alarmId, AckState ackState, @Nullable String ifMatch, Class<U> clazz);
 
-	<U> ResponseEntity<List<U>> search(MultiValueMap<String, String> requestParams, String nextpageOpaqueMarker, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, @Nullable String nextpageOpaqueMarker, Class<U> clazz, Consumer<U> makeLinks);
 
 }
