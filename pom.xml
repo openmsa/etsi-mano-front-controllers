@@ -18,4 +18,11 @@
 		<module>nfv-front-controller</module>
 		<module>em-front-controller</module>
 	</modules>
+	<scm>
+		<developerConnection>scm:git:https://github.com/openmsa/etsi-mano-front-controllers.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+	<properties>
+		<version.mano-model>3.0.0</version.mano-model>
+	</properties>
 </project>
