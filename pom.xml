@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ubiqube.mano</groupId>
 		<artifactId>mano-super-pom</artifactId>
-		<version>3.0.0</version>
+		<version>3.1.0-SNAPSHOT</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<artifactId>etsi-front-controllers-aggregator</artifactId>
@@ -18,7 +18,7 @@
 	</modules>
 	<scm>
 		<developerConnection>scm:git:https://github.com/openmsa/etsi-mano-front-controllers.git</developerConnection>
-		<tag>etsi-front-controllers-aggregator-3.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<properties>
 		<version.mano-model>3.0.0</version.mano-model>
