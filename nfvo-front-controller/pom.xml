@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.ubiqube.mano</groupId>
 		<artifactId>etsi-front-controllers-aggregator</artifactId>
-		<version>3.1.0-SNAPSHOT</version>
+		<version>3.2.0</version>
 	</parent>
 	<artifactId>nfvo-front-controller</artifactId>
 	<packaging>jar</packaging>
@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>com.ubiqube.mano</groupId>
 			<artifactId>mano-model</artifactId>
-			<version>${version.mano-model}</version>
+			<version>3.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.annotation</groupId>
