@@ -16,7 +16,6 @@
  */
 package com.ubiqube.etsi.mano.controller.vnf;
 
-import java.util.UUID;
 import java.util.function.Consumer;
 
 import org.springframework.core.io.Resource;
@@ -36,16 +35,14 @@ public interface OnboardedPackageFrontController {
 
 	<U> ResponseEntity<String> onboardedSearch(MultiValueMap<String, String> requestParams, Class<U> class1, Consumer<U> makeLinks);
 
-	ResponseEntity<Resource> onboardedGetArtifact(HttpServletRequest request, UUID safeUUID, @Nullable String includeSignature);
+	ResponseEntity<Resource> onboardedGetArtifact(HttpServletRequest request, String safeUUID, @Nullable String includeSignature);
 
-	ResponseEntity<Resource> onboardedGetVnfdByVnfdId(UUID safeUUID, String accept);
+	<U> ResponseEntity<U> onboardedFindById(String safeUUID, Class<U> class1, Consumer<U> makeLinks);
 
-	<U> ResponseEntity<U> onboardedFindById(UUID safeUUID, Class<U> class1, Consumer<U> makeLinks);
-
-	ResponseEntity<Resource> onboardedGetManifestByVnfd(UUID fromString, @Nullable String includeSignature);
+	ResponseEntity<Resource> onboardedGetManifestByVnfd(String fromString, @Nullable String includeSignature);
 
 	ResponseEntity<Resource> onboardedGetVnfdByVnfdId(String vnfdId, @Nullable String includeSignature);
 
-	ResponseEntity<Resource> onboardedGetArtifactByVnfdId(UUID safeUUID);
+	ResponseEntity<Resource> onboardedGetArtifactByVnfdId(String safeUUID);
 
 }
