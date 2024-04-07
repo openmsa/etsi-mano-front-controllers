@@ -27,6 +27,11 @@ import org.springframework.util.MultiValueMap;
 import com.ubiqube.etsi.mano.dao.mano.CancelModeTypeEnum;
 import com.ubiqube.etsi.mano.dao.mano.VnfInstance;
 import com.ubiqube.etsi.mano.dao.mano.v2.VnfBlueprint;
+import com.ubiqube.etsi.mano.dao.mano.vnfi.ChangeExtVnfConnRequest;
+import com.ubiqube.etsi.mano.model.VnfInstantiate;
+import com.ubiqube.etsi.mano.model.VnfOperateRequest;
+import com.ubiqube.etsi.mano.model.VnfScaleRequest;
+import com.ubiqube.etsi.mano.model.VnfScaleToLevelRequest;
 
 import jakarta.annotation.Nullable;
 
@@ -34,21 +39,21 @@ public interface VnfInstanceGenericFrontController {
 
 	ResponseEntity<Void> terminate(UUID vnfInstanceId, CancelModeTypeEnum cancelMode, @Nullable Integer timeout, Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<Void> scaleToLevel(UUID vnfInstanceId, U body, Function<VnfBlueprint, String> getSelfLink);
+	<U> ResponseEntity<Void> scaleToLevel(UUID vnfInstanceId, VnfScaleToLevelRequest req, Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<Void> scale(UUID vnfInstanceId, U body, Function<VnfBlueprint, String> getSelfLink);
+	<U> ResponseEntity<Void> scale(UUID vnfInstanceId, VnfScaleRequest req, Function<VnfBlueprint, String> getSelfLink);
 
 	<U> ResponseEntity<Void> snapshot(UUID vnfInstanceId, U body);
 
 	<V> ResponseEntity<V> modify(UUID vnfInstanceId, String body, String ifMatch, Function<VnfInstance, String> getSelfLink);
 
-	<U> ResponseEntity<Void> operate(UUID vnfInstanceId, U body, Function<VnfBlueprint, String> getSelfLink);
+	<U> ResponseEntity<Void> operate(UUID vnfInstanceId, VnfOperateRequest req, Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<Void> instantiate(UUID vnfInstanceId, U body, Function<VnfBlueprint, String> getSelfLink);
+	<U> ResponseEntity<Void> instantiate(UUID vnfInstanceId, VnfInstantiate req, Function<VnfBlueprint, String> getSelfLink);
 
 	ResponseEntity<Void> heal(UUID vnfInstanceId, String cause, Map<String, String> hashMap, final Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<U> findById(UUID vnfInstanceId, Class<U> clazz, Consumer<U> makeLink, String instanceSelfLink);
+	<U> ResponseEntity<U> findById(UUID vnfInstanceId, Function<VnfInstance, U> func, Consumer<U> makeLink, String instanceSelfLink);
 
 	ResponseEntity<Void> deleteById(UUID vnfInstanceId);
 
@@ -58,9 +63,9 @@ public interface VnfInstanceGenericFrontController {
 
 	<U> ResponseEntity<Void> changeFlavour(UUID vnfInstanceId, U object, Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<Void> changeExtConn(UUID vnfInstanceId, U object, Function<VnfBlueprint, String> getSelfLink);
+	<U> ResponseEntity<Void> changeExtConn(UUID vnfInstanceId, ChangeExtVnfConnRequest object, Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<U> create(String vnfdId, String vnfInstanceName, @Nullable String vnfInstanceDescription, Class<U> clazz, Consumer<U> makeLink, String selfLink);
+	<U> ResponseEntity<U> create(String vnfdId, String vnfInstanceName, @Nullable String vnfInstanceDescription, Function<VnfInstance, U> func, Consumer<U> makeLink, String selfLink);
 
 	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Class<U> clazz, @Nullable String nextpageOpaqueMarker, Consumer<U> makeLink);
 

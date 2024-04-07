@@ -21,10 +21,12 @@ import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ubiqube.etsi.mano.dao.mano.GrantResponse;
+
 public interface LcmGrantsFrontController {
 
-	<U> ResponseEntity<U> grantsGrantIdGet(String grantId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> grantsGrantIdGet(String grantId, Function<GrantResponse, U> func, Consumer<U> makeLink);
 
-	<U> ResponseEntity<U> grantsPost(Object grantRequest, Class<U> clazz, Function<U, String> getSelfLink);
+	<U> ResponseEntity<U> grantsPost(Object grantRequest, Function<GrantResponse, U> func, Function<U, String> getSelfLink);
 
 }
