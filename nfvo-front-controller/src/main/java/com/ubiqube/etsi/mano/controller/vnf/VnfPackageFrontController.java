@@ -26,6 +26,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ubiqube.etsi.mano.dao.mano.VnfPackage;
+import com.ubiqube.etsi.mano.dao.mano.pkg.UploadUriParameters;
+
 import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -33,7 +36,7 @@ public interface VnfPackageFrontController {
 
 	ResponseEntity<Resource> getArtifactPath(HttpServletRequest request, UUID vnfPkgId, @Nullable String includeSignature);
 
-	<U> ResponseEntity<U> findById(UUID vnfPkgId, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<U> findById(UUID vnfPkgId, Function<VnfPackage, U> mapper, Consumer<U> makeLinks);
 
 	<U> ResponseEntity<U> findByIdReadOnly(UUID vnfPkgId, Class<U> clazz, Consumer<U> makeLinks);
 
@@ -49,7 +52,7 @@ public interface VnfPackageFrontController {
 
 	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Class<U> clazz, Consumer<U> makeLinks);
 
-	<U> ResponseEntity<U> create(Map<String, String> userDefinedData, Class<U> clazz, Consumer<U> makeLinks, Function<U, String> getSelfLink);
+	<U> ResponseEntity<U> create(Map<String, String> userDefinedData, Function<VnfPackage, U> mapper, Consumer<U> makeLinks, Function<U, String> getSelfLink);
 
 	<U> ResponseEntity<U> getExternalArtifacts(UUID id);
 
@@ -57,9 +60,9 @@ public interface VnfPackageFrontController {
 
 	ResponseEntity<Void> putContent(UUID id, String accept, @Nullable MultipartFile file);
 
-	<U> ResponseEntity<Void> uploadFromUri(U body, UUID id, String contentType);
+	ResponseEntity<Void> uploadFromUri(UploadUriParameters body, UUID id, String contentType);
 
-	<U> ResponseEntity<U> modify(String body, UUID vnfPkgId, @Nullable String ifMatch, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<U> modify(String body, UUID vnfPkgId, @Nullable String ifMatch, Function<VnfPackage, U> mapper, Consumer<U> makeLinks);
 
 	ResponseEntity<Resource> searchArtifact(UUID safeUUID, @Nullable String includeSignatures, @Nullable String excludeAllManoArtifacts, @Nullable String excludeAllNonManoArtifacts, @Nullable String selectNonManoArtifactSets);
 
