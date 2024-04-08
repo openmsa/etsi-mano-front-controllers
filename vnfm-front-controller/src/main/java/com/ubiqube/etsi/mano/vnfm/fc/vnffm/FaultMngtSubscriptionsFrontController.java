@@ -23,11 +23,13 @@ import java.util.function.Function;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
+import com.ubiqube.etsi.mano.service.event.model.Subscription;
+
 public interface FaultMngtSubscriptionsFrontController {
 
 	<U> ResponseEntity<List<U>> search(MultiValueMap<String, String> requestParams, Class<U> clazz, Consumer<U> makeLink);
 
-	<U> ResponseEntity<U> create(Object fmSubscriptionRequest, Class<U> clazz, Class<?> versionController, Consumer<U> makeLink, Function<U, String> getSelfLink);
+	<U> ResponseEntity<U> create(Subscription fmSubscriptionRequest, Function<Subscription, U> clazz, Class<?> versionController, Consumer<U> makeLink, Function<U, String> getSelfLink);
 
 	ResponseEntity<Void> delete(String subscriptionId);
 
