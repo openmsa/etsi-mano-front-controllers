@@ -18,6 +18,8 @@ package com.ubiqube.etsi.mano.controller.vnfind;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ubiqube.etsi.mano.dao.mano.ind.VnfIndiValueChangeNotification;
+
 /**
  *
  * @author olivier
@@ -27,10 +29,10 @@ public interface VnfIndicatorNotificationFrontController {
 
 	ResponseEntity<Void> valueChangeCheck();
 
-	ResponseEntity<Void> valueChangeNotification(Object body, String version);
+	ResponseEntity<Void> valueChangeNotification(VnfIndiValueChangeNotification body, String version);
 
 	ResponseEntity<Void> supportedChangeCheck();
 
-	ResponseEntity<Void> supportedChangeNotification(Object body, String version);
+	ResponseEntity<Void> supportedChangeNotification(VnfIndiValueChangeNotification body, String version);
 
 }

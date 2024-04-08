@@ -22,6 +22,13 @@ import java.util.function.Function;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
+import com.ubiqube.etsi.mano.dao.mano.NsdInstance;
+import com.ubiqube.etsi.mano.dao.mano.dto.CreateNsInstance;
+import com.ubiqube.etsi.mano.dao.mano.dto.nsi.NsInstanceDto;
+import com.ubiqube.etsi.mano.dao.mano.dto.nsi.NsInstantiate;
+import com.ubiqube.etsi.mano.dao.mano.nsd.upd.UpdateRequest;
+import com.ubiqube.etsi.mano.dao.mano.nslcm.scale.NsHeal;
+import com.ubiqube.etsi.mano.dao.mano.nslcm.scale.NsScale;
 import com.ubiqube.etsi.mano.dao.mano.v2.nfvo.NsBlueprint;
 
 public interface NsInstanceGenericFrontController {
@@ -30,18 +37,18 @@ public interface NsInstanceGenericFrontController {
 
 	ResponseEntity<Void> delete(String nsInstanceId);
 
-	<U> ResponseEntity<U> findById(String nsInstanceId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> findById(String nsInstanceId, Function<NsInstanceDto, U> clazz, Consumer<U> makeLink);
 
-	<U> ResponseEntity<U> heal(String nsInstanceId, Object request, final Function<NsBlueprint, String> getSelfLink);
+	<U> ResponseEntity<U> heal(String nsInstanceId, NsHeal request, final Function<NsBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<U> instantiate(String nsInstanceId, Object request, Function<NsBlueprint, String> getSelfLink);
+	<U> ResponseEntity<U> instantiate(String nsInstanceId, NsInstantiate request, Function<NsBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<U> scale(String nsInstanceId, Object request, final Function<NsBlueprint, String> getSelfLink);
+	<U> ResponseEntity<U> scale(String nsInstanceId, NsScale request, final Function<NsBlueprint, String> getSelfLink);
 
 	<U> ResponseEntity<U> terminate(String nsInstanceId, Object request, Function<NsBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<U> update(String nsInstanceId, Object request, final Function<NsBlueprint, String> getSelfLink);
+	<U> ResponseEntity<U> update(String nsInstanceId, UpdateRequest request, final Function<NsBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<U> create(Object request, Class<U> clazz, Consumer<U> makeLink, Function<U, String> getSelfLink);
+	<U> ResponseEntity<U> create(CreateNsInstance request, Function<NsdInstance, U> func, Consumer<U> makeLink, Function<U, String> getSelfLink);
 
 }

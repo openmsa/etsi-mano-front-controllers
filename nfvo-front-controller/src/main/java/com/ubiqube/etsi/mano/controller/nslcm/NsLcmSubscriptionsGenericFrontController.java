@@ -22,6 +22,8 @@ import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ubiqube.etsi.mano.service.event.model.Subscription;
+
 public interface NsLcmSubscriptionsGenericFrontController {
 
 	/**
@@ -32,7 +34,7 @@ public interface NsLcmSubscriptionsGenericFrontController {
 	 * e.g. for resynchronization after error situations.
 	 *
 	 */
-	<U> ResponseEntity<List<U>> search(String filter, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<List<U>> search(String filter, Function<Subscription, U> clazz, Consumer<U> makeLink);
 
 	/**
 	 * Subscribe to NS lifecycle change notifications.
@@ -52,7 +54,7 @@ public interface NsLcmSubscriptionsGenericFrontController {
 	 * callbackUri).
 	 *
 	 */
-	<U> ResponseEntity<U> create(Object lccnSubscriptionRequest, Class<U> clazz, Class<?> versionController, Consumer<U> makeLink, Function<U, String> setLink);
+	<U> ResponseEntity<U> create(Subscription lccnSubscriptionRequest, Function<Subscription, U> func, Class<?> versionController, Consumer<U> makeLink, Function<U, String> setLink);
 
 	/**
 	 * Terminate a subscription.
@@ -73,6 +75,6 @@ public interface NsLcmSubscriptionsGenericFrontController {
 	 * specified in the Tables 6.4.17.3.2-1 and 6.4.17.3.2-2
 	 *
 	 */
-	<U> ResponseEntity<U> findById(String subscriptionId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> findById(String subscriptionId, Function<Subscription, U> func, Consumer<U> makeLink);
 
 }

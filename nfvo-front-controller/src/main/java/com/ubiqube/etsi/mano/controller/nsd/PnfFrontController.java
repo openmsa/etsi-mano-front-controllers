@@ -18,9 +18,12 @@ package com.ubiqube.etsi.mano.controller.nsd;
 
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
+
+import com.ubiqube.etsi.mano.dao.mano.PnfDescriptor;
 
 import jakarta.annotation.Nullable;
 
@@ -59,7 +62,7 @@ public interface PnfFrontController {
 	 * data structures, and response codes.
 	 *
 	 */
-	<U> ResponseEntity<U> findById(String pnfdInfoId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> findById(String pnfdInfoId, Function<PnfDescriptor, U> func, Consumer<U> makeLink);
 
 	/**
 	 * Modify the user defined data of an individual PNF descriptor resource.
@@ -99,7 +102,7 @@ public interface PnfFrontController {
 	 * The POST method is used to create a new PNF descriptor resource
 	 *
 	 */
-	<U> ResponseEntity<U> create(Map<String, Object> userDefinedData, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> create(Map<String, Object> userDefinedData, Function<PnfDescriptor, U> func, Consumer<U> makeLink);
 
 	ResponseEntity<Void> manifestGet(String pnfdInfoId, @Nullable String includeSignatures);
 

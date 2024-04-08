@@ -20,12 +20,14 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import jakarta.annotation.Nonnull;
-
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
+
+import com.ubiqube.etsi.mano.dao.mano.NsdPackage;
+
+import jakarta.annotation.Nonnull;
 
 public interface NsDescriptorGenericFrontController {
 
@@ -60,7 +62,7 @@ public interface NsDescriptorGenericFrontController {
 	 * request and response data structures, and response codes.\&quot;
 	 *
 	 */
-	<U> ResponseEntity<U> finsById(@Nonnull String nsdInfoId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> finsById(@Nonnull String nsdInfoId, Function<NsdPackage, U> clazz, Consumer<U> makeLink);
 
 	/**
 	 * Fetch the content of a NSD.
@@ -122,7 +124,7 @@ public interface NsDescriptorGenericFrontController {
 	 * descriptor resource.
 	 *
 	 */
-	<U> ResponseEntity<U> modify(@Nonnull String nsdInfoId, String body, String ifMatch, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> modify(@Nonnull String nsdInfoId, String body, String ifMatch, Function<NsdPackage, U> func, Consumer<U> makeLink);
 
 	/**
 	 * Create a new NS descriptor resource.
@@ -131,7 +133,7 @@ public interface NsDescriptorGenericFrontController {
 	 * version of an on-boarded NS descriptor.
 	 *
 	 */
-	<U> ResponseEntity<U> create(String contentType, Map<String, String> userDefinedData, Class<U> clazz, Consumer<U> makeLink, Function<U, String> getSelfLink);
+	<U> ResponseEntity<U> create(String contentType, Map<String, String> userDefinedData, Function<NsdPackage, U> func, Consumer<U> makeLink, Function<U, String> getSelfLink);
 
 	ResponseEntity<Resource> getArtifact(@Nonnull String nsdInfoId, String artifactPath, String includeSignatures);
 

@@ -27,6 +27,6 @@ public interface LcmGrantsFrontController {
 
 	<U> ResponseEntity<U> grantsGrantIdGet(String grantId, Function<GrantResponse, U> func, Consumer<U> makeLink);
 
-	<U> ResponseEntity<U> grantsPost(Object grantRequest, Function<GrantResponse, U> func, Function<U, String> getSelfLink);
+	<U> ResponseEntity<U> grantsPost(GrantResponse grantRequest, Function<GrantResponse, U> func, Function<U, String> getSelfLink);
 
 }

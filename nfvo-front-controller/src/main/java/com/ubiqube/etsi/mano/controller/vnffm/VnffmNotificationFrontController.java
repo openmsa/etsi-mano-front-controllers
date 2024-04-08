@@ -18,6 +18,8 @@ package com.ubiqube.etsi.mano.controller.vnffm;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ubiqube.etsi.mano.dao.mano.alarm.AlarmNotification;
+
 /**
  *
  * @author olivier
@@ -27,14 +29,14 @@ public interface VnffmNotificationFrontController {
 
 	ResponseEntity<Void> alarmCheck();
 
-	ResponseEntity<Void> alarmNotification(Object body, String version);
+	ResponseEntity<Void> alarmNotification(AlarmNotification body, String version);
 
 	ResponseEntity<Void> alarmRebuiltCheck();
 
 	ResponseEntity<Void> alarmClearedCheck();
 
-	ResponseEntity<Void> alarmClearedNotification(Object body, String version);
+	ResponseEntity<Void> alarmClearedNotification(AlarmNotification body, String version);
 
-	ResponseEntity<Void> alarmRebuiltNotification(Object body, String string);
+	ResponseEntity<Void> alarmRebuiltNotification(AlarmNotification body, String string);
 
 }

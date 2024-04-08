@@ -18,6 +18,8 @@ package com.ubiqube.etsi.mano.controller.vnflcm;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ubiqube.etsi.mano.dao.mano.vnflcm.VnfLcmNotification;
+
 /**
  *
  * @author olivier
@@ -27,14 +29,14 @@ public interface VnfLcmNotificationFrontController {
 
 	ResponseEntity<Void> creationCheck();
 
-	ResponseEntity<Void> creationNotification(Object body, String version);
+	ResponseEntity<Void> creationNotification(VnfLcmNotification body, String version);
 
 	ResponseEntity<Void> deletionCheck();
 
-	ResponseEntity<Void> deletionNotification(Object body, String version);
+	ResponseEntity<Void> deletionNotification(VnfLcmNotification body, String version);
 
 	ResponseEntity<Void> vnflcmopoccCheck();
 
-	ResponseEntity<Void> vnflcmopoccNotification(Object body, String version);
+	ResponseEntity<Void> vnflcmopoccNotification(VnfLcmNotification body, String version);
 
 }

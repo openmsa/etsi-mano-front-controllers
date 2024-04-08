@@ -17,13 +17,16 @@
 package com.ubiqube.etsi.mano.controller.nslcm;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
+import com.ubiqube.etsi.mano.dao.mano.v2.nfvo.NsBlueprint;
+
 public interface NsLcmGenericFrontController {
 
-	<U> ResponseEntity<U> fail(String nsLcmOpOccId, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<U> fail(String nsLcmOpOccId, Function<NsBlueprint, U> func, Consumer<U> makeLinks);
 
 	ResponseEntity<Void> cancel(String nsLcmOpOccId, String string);
 
@@ -31,7 +34,7 @@ public interface NsLcmGenericFrontController {
 
 	ResponseEntity<Void> continu(String nsLcmOpOccId);
 
-	<U> ResponseEntity<U> findById(String nsLcmOpOccId, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<U> findById(String nsLcmOpOccId, Function<NsBlueprint, U> func, Consumer<U> makeLinks);
 
 	ResponseEntity<Void> retry(String nsLcmOpOccId);
 

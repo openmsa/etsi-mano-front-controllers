@@ -18,21 +18,26 @@ package com.ubiqube.etsi.mano.controller.vnf;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ubiqube.etsi.mano.dao.mano.VnfPackageChangeNotification;
+import com.ubiqube.etsi.mano.dao.mano.VnfPackageOnboardingNotification;
+import com.ubiqube.etsi.mano.service.event.model.Subscription;
+
 public interface VnfSubscriptionSol005FrontController {
 
-	<U> ResponseEntity<List<U>> search(String filters, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<List<U>> search(String filters, Function<Subscription, U> func, Consumer<U> makeLinks);
 
-	<U> ResponseEntity<U> create(Object subscriptionsPostQuery, Class<?> version, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<U> create(Subscription subscriptionsPostQuery, Class<?> version, Function<Subscription, U> func, Consumer<U> makeLinks);
 
 	ResponseEntity<Void> delete(String subscriptionId);
 
-	<U> ResponseEntity<U> findById(String subscriptionId, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<U> findById(String subscriptionId, Function<Subscription, U> func, Consumer<U> makeLinks);
 
-	void vnfPackageChangeNotificationPost(Object notificationsMessage);
+	void vnfPackageChangeNotificationPost(VnfPackageChangeNotification notificationsMessage);
 
-	void vnfPackageOnboardingNotificationPost(Object notificationsMessage);
+	void vnfPackageOnboardingNotificationPost(VnfPackageOnboardingNotification notificationsMessage);
 
 }

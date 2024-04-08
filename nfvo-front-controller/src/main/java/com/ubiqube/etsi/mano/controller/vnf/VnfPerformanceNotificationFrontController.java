@@ -18,6 +18,9 @@ package com.ubiqube.etsi.mano.controller.vnf;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ubiqube.etsi.mano.dao.mano.pm.PerformanceInformationAvailableNotification;
+import com.ubiqube.etsi.mano.dao.mano.pm.ThresholdCrossedNotification;
+
 /**
  *
  * @author olivier
@@ -25,11 +28,11 @@ import org.springframework.http.ResponseEntity;
  */
 public interface VnfPerformanceNotificationFrontController {
 
-	ResponseEntity<Void> crossedPost(Object body, String version);
+	ResponseEntity<Void> crossedPost(ThresholdCrossedNotification body, String version);
 
 	ResponseEntity<Void> crossedCheck();
 
-	ResponseEntity<Void> availablePost(Object body, String version);
+	ResponseEntity<Void> availablePost(PerformanceInformationAvailableNotification body, String version);
 
 	ResponseEntity<Void> availableCheck();
 
