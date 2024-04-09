@@ -19,13 +19,16 @@ package com.ubiqube.etsi.mano.vnfm.fc.vnflcm;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
+import com.ubiqube.etsi.mano.dao.mano.v2.VnfBlueprint;
+
 public interface VnfLcmOpOccGenericFrontController {
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Class<U> class1, Consumer<U> makeLinks);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<VnfBlueprint, U> mapper, Consumer<U> makeLinks);
 
 	ResponseEntity<Void> lcmOpOccRollback(UUID id);
 

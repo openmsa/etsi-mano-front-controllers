@@ -23,17 +23,20 @@ import java.util.function.Function;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
+import com.ubiqube.etsi.mano.dao.mano.pm.PerformanceReport;
+import com.ubiqube.etsi.mano.dao.mano.pm.PmJob;
+
 public interface VnfmPmGenericFrontController {
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<PmJob, U> mapper, Consumer<U> makeLink);
 
 	ResponseEntity<Void> deleteById(UUID pmJobId);
 
-	<U> ResponseEntity<U> findById(UUID pmJobIdn, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<U> findById(UUID pmJobIdn, Function<PmJob, U> mapper, Consumer<U> makeLinks);
 
-	<U> ResponseEntity<U> findReportById(String pmJobId, String reportId, Class<U> clazz);
+	<U> ResponseEntity<U> findReportById(String pmJobId, String reportId, Function<PerformanceReport, U> mapper);
 
-	<U> ResponseEntity<U> pmJobsPost(Object createPmJobRequest, Class<U> clazz, Consumer<U> makeLinks, Function<U, String> getSelfLink);
+	<U> ResponseEntity<U> pmJobsPost(PmJob createPmJobRequest, Function<PmJob, U> mapper, Consumer<U> makeLinks, Function<U, String> getSelfLink);
 
 	<U> ResponseEntity<U> pmJobsPmJobIdPatch(UUID pmJobId, Object pmJobModifications);
 

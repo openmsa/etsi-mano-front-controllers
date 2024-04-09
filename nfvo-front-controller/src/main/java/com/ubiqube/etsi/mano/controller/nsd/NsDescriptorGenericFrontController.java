@@ -40,7 +40,7 @@ public interface NsDescriptorGenericFrontController {
 	 * data structures, and response codes.\&quot;
 	 *
 	 */
-	<U> ResponseEntity<String> search(@Nonnull MultiValueMap<String, String> requestParams, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(@Nonnull MultiValueMap<String, String> requestParams, Function<NsdPackage, U> clazz, Consumer<U> makeLink);
 
 	/**
 	 * Delete an individual NS descriptor resource.

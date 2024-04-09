@@ -27,12 +27,12 @@ import com.ubiqube.etsi.mano.service.event.model.Subscription;
 
 public interface VnfIndSubscriptionsFrontController {
 
-	<U> ResponseEntity<List<U>> search(MultiValueMap<String, String> requestParams, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<List<U>> search(MultiValueMap<String, String> requestParams, Function<Subscription, U> mapper, Consumer<U> makeLink);
 
 	<U> ResponseEntity<U> create(Subscription vnfIndicatorSubscriptionRequest, Function<Subscription, U> func, Class<?> versionController, Consumer<U> makeLink, Function<U, String> getSelfLink);
 
 	ResponseEntity<Void> delete(String subscriptionId);
 
-	<U> ResponseEntity<U> findById(String subscriptionId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> findById(String subscriptionId, Function<Subscription, U> mapper, Consumer<U> makeLink);
 
 }

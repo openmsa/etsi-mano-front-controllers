@@ -34,6 +34,6 @@ public interface NsAlarmFrontController {
 
 	<U> ResponseEntity<U> patch(String alarmId, AckState ackState, @Nullable String ifMatch, Function<Alarms, U> func);
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, @Nullable String nextpageOpaqueMarker, Class<U> clazz, Consumer<U> makeLinks);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, @Nullable String nextpageOpaqueMarker, Function<Alarms, U> mapper, Consumer<U> makeLinks);
 
 }

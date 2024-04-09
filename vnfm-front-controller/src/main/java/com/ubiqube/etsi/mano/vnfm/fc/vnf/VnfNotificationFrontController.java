@@ -18,12 +18,15 @@ package com.ubiqube.etsi.mano.vnfm.fc.vnf;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ubiqube.etsi.mano.dao.mano.VnfPackageChangeNotification;
+import com.ubiqube.etsi.mano.dao.mano.VnfPackageOnboardingNotification;
+
 public interface VnfNotificationFrontController {
 
 	ResponseEntity<Void> check();
 
-	ResponseEntity<Void> onNotification(Object body, String version);
+	ResponseEntity<Void> onNotification(VnfPackageOnboardingNotification body, String version);
 
-	ResponseEntity<Void> onChange(Object body, String string);
+	ResponseEntity<Void> onChange(VnfPackageChangeNotification body, String string);
 
 }

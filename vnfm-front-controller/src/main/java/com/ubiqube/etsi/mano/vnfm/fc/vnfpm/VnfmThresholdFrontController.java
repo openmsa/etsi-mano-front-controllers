@@ -22,18 +22,20 @@ import java.util.function.Function;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
+import com.ubiqube.etsi.mano.dao.mano.pm.Threshold;
+
 import jakarta.annotation.Nullable;
 
 public interface VnfmThresholdFrontController {
 
-	<U> ResponseEntity<U> thresholdsCreate(Object request, Class<U> clazz, Consumer<U> makeLink, Function<U, String> getSelfLink);
+	<U> ResponseEntity<U> thresholdsCreate(Threshold request, Function<Threshold, U> mapper, Consumer<U> makeLink, Function<U, String> getSelfLink);
 
 	ResponseEntity<Void> deleteById(String thresholdId);
 
-	<U> ResponseEntity<U> findById(String thresholdId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> findById(String thresholdId, Function<Threshold, U> mapper, Consumer<U> makeLink);
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, @Nullable String nextpageOpaqueMarker, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, @Nullable String nextpageOpaqueMarker, Function<Threshold, U> mapper, Consumer<U> makeLink);
 
-	<U> ResponseEntity<U> patch(String thresholdId, Object body, Class<U> clazz);
+	<U> ResponseEntity<U> patch(String thresholdId, Object body, Function<Threshold, U> mapper);
 
 }

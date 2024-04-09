@@ -33,7 +33,7 @@ import com.ubiqube.etsi.mano.dao.mano.v2.nfvo.NsBlueprint;
 
 public interface NsInstanceGenericFrontController {
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Class<U> clazz, String nextpageOpaqueMarker, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<NsInstanceDto, U> mapper, String nextpageOpaqueMarker, Consumer<U> makeLink);
 
 	ResponseEntity<Void> delete(String nsInstanceId);
 

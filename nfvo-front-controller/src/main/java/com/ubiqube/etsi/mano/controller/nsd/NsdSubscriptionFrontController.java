@@ -38,7 +38,7 @@ public interface NsdSubscriptionFrontController {
 	 * notifications related to NSD management and to query its subscriptions.
 	 *
 	 */
-	<U> ResponseEntity<List<U>> search(MultiValueMap<String, String> requestParams, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<List<U>> search(MultiValueMap<String, String> requestParams, Function<Subscription, U> mapper, Consumer<U> makeLink);
 
 	/**
 	 * Subscribe to NSD and PNFD change notifications.
@@ -85,6 +85,6 @@ public interface NsdSubscriptionFrontController {
 	 * terminate a subscription to notifications related to NSD management.
 	 *
 	 */
-	<U> ResponseEntity<U> findById(String subscriptionId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> findById(String subscriptionId, Function<Subscription, U> mapper, Consumer<U> makeLink);
 
 }

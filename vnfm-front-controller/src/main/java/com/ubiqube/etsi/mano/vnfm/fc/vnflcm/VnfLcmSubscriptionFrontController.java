@@ -29,9 +29,9 @@ import jakarta.annotation.Nullable;
 
 public interface VnfLcmSubscriptionFrontController {
 
-	<U> ResponseEntity<U> findById(String id, Class<U> clazz, Consumer<U> setLink);
+	<U> ResponseEntity<U> findById(String id, Function<Subscription, U> clazz, Consumer<U> setLink);
 
-	<U> ResponseEntity<List<U>> search(MultiValueMap<String, String> requestParams, @Nullable String nextpageOpaqueMarker, Class<U> clazz, Consumer<U> setLink);
+	<U> ResponseEntity<List<U>> search(MultiValueMap<String, String> requestParams, @Nullable String nextpageOpaqueMarker, Function<Subscription, U> clazz, Consumer<U> setLink);
 
 	<U> ResponseEntity<U> create(Subscription body, Function<Subscription, U> func, Class<?> versionController, Consumer<U> makeLinks, Function<U, String> setLink);
 

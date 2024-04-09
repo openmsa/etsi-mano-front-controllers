@@ -17,10 +17,13 @@
 package com.ubiqube.etsi.mano.controller.vnf;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
+
+import com.ubiqube.etsi.mano.dao.mano.VnfPackage;
 
 import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,11 +36,11 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface OnboardedPackageFrontController {
 	ResponseEntity<Resource> onboardedGetContentByVnfdId(String vnfdId, String accept, @Nullable String includeSignature);
 
-	<U> ResponseEntity<String> onboardedSearch(MultiValueMap<String, String> requestParams, Class<U> class1, Consumer<U> makeLinks);
+	<U> ResponseEntity<String> onboardedSearch(MultiValueMap<String, String> requestParams, Function<VnfPackage, U> mapper, Consumer<U> makeLinks);
 
 	ResponseEntity<Resource> onboardedGetArtifact(HttpServletRequest request, String safeUUID, @Nullable String includeSignature);
 
-	<U> ResponseEntity<U> onboardedFindById(String safeUUID, Class<U> class1, Consumer<U> makeLinks);
+	<U> ResponseEntity<U> onboardedFindById(String safeUUID, Function<VnfPackage, U> mapper, Consumer<U> makeLinks);
 
 	ResponseEntity<Resource> onboardedGetManifestByVnfd(String fromString, @Nullable String includeSignature);
 

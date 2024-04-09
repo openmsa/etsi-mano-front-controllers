@@ -18,17 +18,20 @@ package com.ubiqube.etsi.mano.vnfm.fc.vnfind;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
+
+import com.ubiqube.etsi.mano.dao.mano.VnfIndicator;
 
 import jakarta.annotation.Nullable;
 
 public interface IndicatorsFrontController {
 
-	<U> ResponseEntity<List<U>> search(@Nullable String filter, @Nullable String nextpageOpaqueMarker, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<List<U>> search(@Nullable String filter, @Nullable String nextpageOpaqueMarker, Function<VnfIndicator, U> mapper, Consumer<U> makeLink);
 
-	<U> ResponseEntity<List<U>> findByVnfInstanceId(String vnfInstanceId, @Nullable String filter, @Nullable String nextpageOpaqueMarker, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<List<U>> findByVnfInstanceId(String vnfInstanceId, @Nullable String filter, @Nullable String nextpageOpaqueMarker, Function<VnfIndicator, U> mapper, Consumer<U> makeLink);
 
-	<U> ResponseEntity<U> findByVnfInstanceIdAndIndicatorId(String vnfInstanceId, String indicatorId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> findByVnfInstanceIdAndIndicatorId(String vnfInstanceId, String indicatorId, Function<VnfIndicator, U> mapper, Consumer<U> makeLink);
 
 }

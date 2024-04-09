@@ -24,9 +24,11 @@ import java.util.function.Function;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
+import com.ubiqube.etsi.mano.service.event.model.Subscription;
+
 public interface VnfLcmSubscriptionFrontController {
 
-	<U> ResponseEntity<U> findById(UUID id, Class<U> clazz, Consumer<U> setLink);
+	<U> ResponseEntity<U> findById(UUID id, Function<Subscription, U> clazz, Consumer<U> setLink);
 
 	<U> ResponseEntity<List<U>> search(MultiValueMap<String, String> requestParams, String nextpageOpaqueMarker, Class<U> clazz, Consumer<U> setLink);
 

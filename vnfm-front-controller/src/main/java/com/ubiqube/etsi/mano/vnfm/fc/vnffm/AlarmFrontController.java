@@ -17,11 +17,13 @@
 package com.ubiqube.etsi.mano.vnfm.fc.vnffm;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
 import com.ubiqube.etsi.mano.dao.mano.alarm.AckState;
+import com.ubiqube.etsi.mano.dao.mano.alarm.Alarms;
 import com.ubiqube.etsi.mano.dao.mano.alarm.PerceivedSeverityType;
 
 import jakarta.annotation.Nullable;
@@ -30,10 +32,10 @@ public interface AlarmFrontController {
 
 	ResponseEntity<Void> escalate(String alarmId, PerceivedSeverityType perceivedSeverityRequest);
 
-	<U> ResponseEntity<U> findById(String alarmId, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> findById(String alarmId, Function<Alarms, U> mapper, Consumer<U> makeLink);
 
-	<U> ResponseEntity<U> patch(String alarmId, AckState ackState, @Nullable String ifMatch, Class<U> clazz);
+	<U> ResponseEntity<U> patch(String alarmId, AckState ackState, @Nullable String ifMatch, Function<Alarms, U> mapper);
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Class<U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<Alarms, U> mapper, Consumer<U> makeLink);
 
 }
