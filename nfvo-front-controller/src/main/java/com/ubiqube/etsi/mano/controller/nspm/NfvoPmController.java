@@ -29,7 +29,7 @@ import com.ubiqube.etsi.mano.dao.mano.pm.PmJob;
 
 public interface NfvoPmController {
 
-	<U> ResponseEntity<String> search(final MultiValueMap<String, String> requestParams, final Function<PmJob, U> mapper, final String excludeDefaults, final Set<String> mandatoryFields, final Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(final MultiValueMap<String, String> requestParams, final Function<PmJob, U> mapper, final String excludeDefaults, final Set<String> mandatoryFields, final Consumer<U> makeLink, Class<?> frontClass);
 
 	void deleteById(UUID id);
 

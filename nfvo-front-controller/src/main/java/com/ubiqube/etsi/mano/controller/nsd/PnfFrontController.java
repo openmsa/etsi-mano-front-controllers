@@ -36,7 +36,7 @@ public interface PnfFrontController {
 	 * resources.\&quot;
 	 *
 	 */
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<PnfDescriptor, U> mapper, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<PnfDescriptor, U> mapper, Consumer<U> makeLink, Class<?> frontClass);
 
 	/**
 	 * Delete an individual PNF descriptor resource.

@@ -30,7 +30,7 @@ public interface NsLcmGenericFrontController {
 
 	ResponseEntity<Void> cancel(String nsLcmOpOccId, String string);
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<NsBlueprint, U> mapper, String nextpageOpaqueMarker, Consumer<U> makeLinks);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<NsBlueprint, U> mapper, String nextpageOpaqueMarker, Consumer<U> makeLinks, Class<?> frontClass);
 
 	ResponseEntity<Void> continu(String nsLcmOpOccId);
 

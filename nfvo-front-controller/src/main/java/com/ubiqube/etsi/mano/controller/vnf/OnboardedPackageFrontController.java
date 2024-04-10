@@ -36,7 +36,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface OnboardedPackageFrontController {
 	ResponseEntity<Resource> onboardedGetContentByVnfdId(String vnfdId, String accept, @Nullable String includeSignature);
 
-	<U> ResponseEntity<String> onboardedSearch(MultiValueMap<String, String> requestParams, Function<VnfPackage, U> mapper, Consumer<U> makeLinks);
+	<U> ResponseEntity<String> onboardedSearch(MultiValueMap<String, String> requestParams, Function<VnfPackage, U> mapper, Consumer<U> makeLinks, Class<?> frontClass);
 
 	ResponseEntity<Resource> onboardedGetArtifact(HttpServletRequest request, String safeUUID, @Nullable String includeSignature);
 

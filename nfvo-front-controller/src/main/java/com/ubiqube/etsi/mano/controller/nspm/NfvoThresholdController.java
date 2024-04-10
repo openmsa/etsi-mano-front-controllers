@@ -28,7 +28,7 @@ import com.ubiqube.etsi.mano.dao.mano.pm.Threshold;
 
 public interface NfvoThresholdController {
 
-	<U> ResponseEntity<String> search(final MultiValueMap<String, String> requestParams, final Function<Threshold, U> mapper, final String excludeDefaults, final Set<String> mandatoryFields, final Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(final MultiValueMap<String, String> requestParams, final Function<Threshold, U> mapper, final String excludeDefaults, final Set<String> mandatoryFields, final Consumer<U> makeLink, Class<?> frontClass);
 
 	Threshold save(Threshold threshold);
 

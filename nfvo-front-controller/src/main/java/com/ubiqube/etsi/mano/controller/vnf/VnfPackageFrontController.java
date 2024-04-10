@@ -50,7 +50,7 @@ public interface VnfPackageFrontController {
 
 	ResponseEntity<Void> deleteById(UUID vnfPkgId);
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<VnfPackage, U> mapper, Consumer<U> makeLinks);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<VnfPackage, U> mapper, Consumer<U> makeLinks, Class<?> frontClass);
 
 	<U> ResponseEntity<U> create(Map<String, String> userDefinedData, Function<VnfPackage, U> mapper, Consumer<U> makeLinks, Function<U, String> getSelfLink);
 
