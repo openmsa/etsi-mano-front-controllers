@@ -36,6 +36,6 @@ public interface AlarmFrontController {
 
 	<U> ResponseEntity<U> patch(String alarmId, AckState ackState, @Nullable String ifMatch, Function<Alarms, U> mapper);
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<Alarms, U> mapper, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<Alarms, U> mapper, Consumer<U> makeLink, Class<?> frontClass);
 
 }

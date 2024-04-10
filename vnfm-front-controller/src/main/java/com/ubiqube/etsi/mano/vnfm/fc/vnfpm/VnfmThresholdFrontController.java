@@ -34,7 +34,7 @@ public interface VnfmThresholdFrontController {
 
 	<U> ResponseEntity<U> findById(String thresholdId, Function<Threshold, U> mapper, Consumer<U> makeLink);
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, @Nullable String nextpageOpaqueMarker, Function<Threshold, U> mapper, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, @Nullable String nextpageOpaqueMarker, Function<Threshold, U> mapper, Consumer<U> makeLink, Class<?> frontClass);
 
 	<U> ResponseEntity<U> patch(String thresholdId, Object body, Function<Threshold, U> mapper);
 

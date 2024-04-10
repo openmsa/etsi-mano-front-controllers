@@ -67,6 +67,6 @@ public interface VnfInstanceGenericFrontController {
 
 	<U> ResponseEntity<U> create(String vnfdId, String vnfInstanceName, @Nullable String vnfInstanceDescription, Function<VnfInstance, U> func, Consumer<U> makeLink, String selfLink);
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<VnfInstance, U> mapper, @Nullable String nextpageOpaqueMarker, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<VnfInstance, U> mapper, @Nullable String nextpageOpaqueMarker, Consumer<U> makeLink, Class<?> frontClass);
 
 }

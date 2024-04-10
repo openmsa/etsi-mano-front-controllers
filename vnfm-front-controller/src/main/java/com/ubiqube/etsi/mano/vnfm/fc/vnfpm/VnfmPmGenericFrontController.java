@@ -28,7 +28,7 @@ import com.ubiqube.etsi.mano.dao.mano.pm.PmJob;
 
 public interface VnfmPmGenericFrontController {
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<PmJob, U> mapper, Consumer<U> makeLink);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<PmJob, U> mapper, Consumer<U> makeLink, Class<?> frontClass);
 
 	ResponseEntity<Void> deleteById(UUID pmJobId);
 

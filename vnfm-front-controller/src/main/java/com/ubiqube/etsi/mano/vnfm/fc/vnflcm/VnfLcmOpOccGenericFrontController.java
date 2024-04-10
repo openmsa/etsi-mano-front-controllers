@@ -28,7 +28,7 @@ import com.ubiqube.etsi.mano.dao.mano.v2.VnfBlueprint;
 
 public interface VnfLcmOpOccGenericFrontController {
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<VnfBlueprint, U> mapper, Consumer<U> makeLinks);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<VnfBlueprint, U> mapper, Consumer<U> makeLinks, Class<?> frontClass);
 
 	ResponseEntity<Void> lcmOpOccRollback(UUID id);
 
