@@ -11,5 +11,10 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.ubiqube.mano</groupId>
+			<artifactId>mano-model</artifactId>
+			<version>${version.mano-model}</version>
+		</dependency>
 	</dependencies>
 </project>

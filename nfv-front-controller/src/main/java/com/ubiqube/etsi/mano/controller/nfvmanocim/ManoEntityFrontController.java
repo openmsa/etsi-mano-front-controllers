@@ -206,23 +206,27 @@
 package com.ubiqube.etsi.mano.controller.nfvmanocim;
 
 import java.util.List;
+import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
+
+import com.ubiqube.etsi.mano.dao.mano.sol009.entity.ManoEntity;
+import com.ubiqube.etsi.mano.dao.mano.sol009.iface.ManoServiceInterface;
 
 public interface ManoEntityFrontController {
 
 	ResponseEntity<Void> changeStatus(Object body);
 
-	<U> ResponseEntity<U> find(Class<U> clazz);
+	<U> ResponseEntity<U> find(Function<ManoEntity, U> mapper);
 
-	<U> ResponseEntity<List<U>> interfaceSearch(String filter, Class<U> clazz);
+	<U> ResponseEntity<List<U>> interfaceSearch(String filter, Function<ManoServiceInterface, U> mapper);
 
 	ResponseEntity<Void> interfaceChangeState(String manoServiceInterfaceId, Object body);
 
-	<U> ResponseEntity<U> interfaceFindById(String manoServiceInterfaceId, Class<U> clazz);
+	<U> ResponseEntity<U> interfaceFindById(String manoServiceInterfaceId, Function<ManoEntity, U> mapper);
 
-	<U> ResponseEntity<U> interfacePatch(String manoServiceInterfaceId, Object body, Class<U> clazz);
+	<U> ResponseEntity<U> interfacePatch(String manoServiceInterfaceId, Object body, Function<ManoEntity, U> mapper);
 
-	<U> ResponseEntity<U> patch(Object body, Class<U> clazz);
+	<U> ResponseEntity<U> patch(Object body, Function<ManoEntity, U> mapper);
 
 }
