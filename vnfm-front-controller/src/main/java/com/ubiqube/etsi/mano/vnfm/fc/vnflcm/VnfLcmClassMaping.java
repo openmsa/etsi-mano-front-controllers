@@ -16,6 +16,8 @@
  */
 package com.ubiqube.etsi.mano.vnfm.fc.vnflcm;
 
+import com.ubiqube.etsi.mano.dao.mano.v2.VnfBlueprint;
+
 /**
  * Mapping class for VnfLcmOpOcc.
  *
@@ -24,28 +26,28 @@ package com.ubiqube.etsi.mano.vnfm.fc.vnflcm;
  */
 public interface VnfLcmClassMaping {
 
-	Class<?> getInstantiateVnfRequest();
+	<R> R getInstantiateVnfRequest(VnfBlueprint o);
 
-	Class<?> getScaleVnfRequest();
+	<R> R getScaleVnfRequest(VnfBlueprint o);
 
-	Class<?> getScaleVnfToLevelRequest();
+	<R> R getScaleVnfToLevelRequest(VnfBlueprint o);
 
-	Class<?> getChangeVnfFlavourRequest();
+	<R> R getChangeVnfFlavourRequest(VnfBlueprint o);
 
-	Class<?> getOperateVnfRequest();
+	<R> R getOperateVnfRequest(VnfBlueprint o);
 
-	Class<?> getHealVnfRequest();
+	<R> R getHealVnfRequest(VnfBlueprint o);
 
-	Class<?> getChangeExtVnfConnectivityRequest();
+	<R> R getChangeExtVnfConnectivityRequest(VnfBlueprint o);
 
-	Class<?> getTerminateVnfRequest();
+	<R> R getTerminateVnfRequest(VnfBlueprint o);
 
-	Class<?> getVnfInfoModificationRequest();
+	<R> R getVnfInfoModificationRequest(VnfBlueprint o);
 
-	Class<?> getCreateVnfSnapshotRequest();
+	<R> R getCreateVnfSnapshotRequest(VnfBlueprint o);
 
-	Class<?> getRevertToVnfSnapshotRequest();
+	<R> R getRevertToVnfSnapshotRequest(VnfBlueprint o);
 
-	Class<?> getChangeCurrentVnfPkgRequest();
+	<R> R getChangeCurrentVnfPkgRequest(VnfBlueprint o);
 
 }
