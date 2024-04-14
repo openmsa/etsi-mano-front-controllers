@@ -38,6 +38,6 @@ public interface VnfLcmOpOccGenericFrontController {
 
 	<U> ResponseEntity<U> lcmOpOccCancel(UUID id);
 
-	<U> ResponseEntity<U> lcmOpOccFindById(VnfLcmClassMaping mapping, UUID fromString, Class<U> clazz, Consumer<U> makeLink, BiConsumer<U, Object> operationParameter);
+	<U> ResponseEntity<U> lcmOpOccFindById(VnfLcmClassMaping mapping, UUID fromString, Consumer<U> makeLink, BiConsumer<U, Object> operationParameter);
 
 }

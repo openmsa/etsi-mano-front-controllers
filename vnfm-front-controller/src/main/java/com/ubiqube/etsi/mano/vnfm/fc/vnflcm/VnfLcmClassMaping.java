@@ -50,4 +50,5 @@ public interface VnfLcmClassMaping {
 
 	<R> R getChangeCurrentVnfPkgRequest(VnfBlueprint o);
 
+	<R> R mapToVnfLcmOpOcc(VnfBlueprint o);
 }
