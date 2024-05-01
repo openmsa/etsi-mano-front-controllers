@@ -205,21 +205,28 @@
  */
 package com.ubiqube.etsi.mano.controller.nfvmanologm;
 
+import java.util.function.Function;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 
+import com.ubiqube.etsi.mano.dao.mano.sol009.logm.CompileLogRequest;
+import com.ubiqube.etsi.mano.dao.mano.sol009.logm.CreateLoggingJobRequest;
+import com.ubiqube.etsi.mano.dao.mano.sol009.logm.LogReport;
+import com.ubiqube.etsi.mano.dao.mano.sol009.logm.LoggingJob;
+
 public interface LogJobsFrontController {
 
-	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Class<U> class1, String nextpageOpaqueMarker);
+	<U> ResponseEntity<String> search(MultiValueMap<String, String> requestParams, Function<LoggingJob, U> mapper, String nextpageOpaqueMarker);
 
-	<U> ResponseEntity<U> compile(String logJobId, Object body, Class<U> clazz);
+	<U> ResponseEntity<U> compile(String logJobId, CompileLogRequest req, Function<LogReport, U> mapper);
 
 	ResponseEntity<Void> delete(String logJobId);
 
-	<U> ResponseEntity<U> findById(String logJobId, Class<U> clazz);
+	<U> ResponseEntity<U> findById(String logJobId, Function<LoggingJob, U> mapper);
 
-	<U> ResponseEntity<U> findLogReport(String logJobId, String logReportId, Class<U> clazz);
+	<U> ResponseEntity<U> findLogReport(String logJobId, String logReportId, Function<LogReport, U> mapper);
 
-	<U> ResponseEntity<U> create(Object body, Class<U> clazz);
+	<U> ResponseEntity<U> create(CreateLoggingJobRequest request, Function<LoggingJob, U> mapper);
 
 }
