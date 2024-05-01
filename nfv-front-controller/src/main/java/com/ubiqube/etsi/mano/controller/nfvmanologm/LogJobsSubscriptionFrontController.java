@@ -206,17 +206,20 @@
 package com.ubiqube.etsi.mano.controller.nfvmanologm;
 
 import java.util.List;
+import java.util.function.Function;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ubiqube.etsi.mano.service.event.model.Subscription;
+
 public interface LogJobsSubscriptionFrontController {
 
-	<U> ResponseEntity<List<U>> search(String filter, Class<U> claee);
+	<U> ResponseEntity<List<U>> search(String filter, Function<Subscription, U> mapper);
 
-	<U> ResponseEntity<U> create(Object body, Class<U> clazz);
+	<U> ResponseEntity<U> create(Subscription body, Function<Subscription, U> mapper);
 
 	ResponseEntity<Void> delete(String subscriptionId);
 
-	<U> ResponseEntity<U> findById(String subscriptionId, Class<U> clazz);
+	<U> ResponseEntity<U> findById(String subscriptionId, Function<Subscription, U> mapper);
 
 }
