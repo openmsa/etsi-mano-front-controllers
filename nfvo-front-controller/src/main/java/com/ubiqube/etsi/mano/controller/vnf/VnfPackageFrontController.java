@@ -27,6 +27,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ubiqube.etsi.mano.dao.mano.VnfPackage;
+import com.ubiqube.etsi.mano.dao.mano.pkg.ExternalArtifactsAccessConfig;
 import com.ubiqube.etsi.mano.dao.mano.pkg.UploadUriParameters;
 
 import jakarta.annotation.Nullable;
@@ -56,7 +57,7 @@ public interface VnfPackageFrontController {
 
 	<U> ResponseEntity<U> getExternalArtifacts(UUID id);
 
-	<U> ResponseEntity<U> putExternalArtifact(U body, UUID id);
+	<U> ResponseEntity<U> putExternalArtifactAccessConfig(ExternalArtifactsAccessConfig body, UUID id, Function<ExternalArtifactsAccessConfig, U> mapper);
 
 	ResponseEntity<Void> putContent(UUID id, String accept, @Nullable MultipartFile file);
 
