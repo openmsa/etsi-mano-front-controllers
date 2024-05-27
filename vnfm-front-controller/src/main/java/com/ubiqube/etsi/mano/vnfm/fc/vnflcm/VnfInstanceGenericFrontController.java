@@ -39,17 +39,17 @@ public interface VnfInstanceGenericFrontController {
 
 	ResponseEntity<Void> terminate(UUID vnfInstanceId, CancelModeTypeEnum cancelMode, @Nullable Integer timeout, Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<Void> scaleToLevel(UUID vnfInstanceId, VnfScaleToLevelRequest req, Function<VnfBlueprint, String> getSelfLink);
+	ResponseEntity<Void> scaleToLevel(UUID vnfInstanceId, VnfScaleToLevelRequest req, Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<Void> scale(UUID vnfInstanceId, VnfScaleRequest req, Function<VnfBlueprint, String> getSelfLink);
+	ResponseEntity<Void> scale(UUID vnfInstanceId, VnfScaleRequest req, Function<VnfBlueprint, String> getSelfLink);
 
 	<U> ResponseEntity<Void> snapshot(UUID vnfInstanceId, U body);
 
 	<V> ResponseEntity<V> modify(UUID vnfInstanceId, String body, String ifMatch, Function<VnfInstance, String> getSelfLink);
 
-	<U> ResponseEntity<Void> operate(UUID vnfInstanceId, VnfOperateRequest req, Function<VnfBlueprint, String> getSelfLink);
+	ResponseEntity<Void> operate(UUID vnfInstanceId, VnfOperateRequest req, Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<Void> instantiate(UUID vnfInstanceId, VnfInstantiate req, Function<VnfBlueprint, String> getSelfLink);
+	ResponseEntity<Void> instantiate(UUID vnfInstanceId, VnfInstantiate req, Function<VnfBlueprint, String> getSelfLink);
 
 	ResponseEntity<Void> heal(UUID vnfInstanceId, String cause, Map<String, String> hashMap, final Function<VnfBlueprint, String> getSelfLink);
 
