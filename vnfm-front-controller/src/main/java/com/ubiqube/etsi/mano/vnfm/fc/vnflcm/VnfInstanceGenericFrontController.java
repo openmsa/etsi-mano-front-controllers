@@ -63,7 +63,7 @@ public interface VnfInstanceGenericFrontController {
 
 	<U> ResponseEntity<Void> changeFlavour(UUID vnfInstanceId, U object, Function<VnfBlueprint, String> getSelfLink);
 
-	<U> ResponseEntity<Void> changeExtConn(UUID vnfInstanceId, ChangeExtVnfConnRequest object, Function<VnfBlueprint, String> getSelfLink);
+	ResponseEntity<Void> changeExtConn(UUID vnfInstanceId, ChangeExtVnfConnRequest object, Function<VnfBlueprint, String> getSelfLink);
 
 	<U> ResponseEntity<U> create(String vnfdId, String vnfInstanceName, @Nullable String vnfInstanceDescription, Function<VnfInstance, U> func, Consumer<U> makeLink, String selfLink);
 
