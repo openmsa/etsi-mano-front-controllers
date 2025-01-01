@@ -27,7 +27,7 @@ import org.springframework.util.MultiValueMap;
 
 import com.ubiqube.etsi.mano.dao.mano.NsdPackage;
 
-import jakarta.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 public interface NsDescriptorGenericFrontController {
 
@@ -40,7 +40,7 @@ public interface NsDescriptorGenericFrontController {
 	 * data structures, and response codes.\&quot;
 	 *
 	 */
-	<U> ResponseEntity<String> search(@Nonnull MultiValueMap<String, String> requestParams, Function<NsdPackage, U> clazz, Consumer<U> makeLink, Class<U> frontClass);
+	<U> ResponseEntity<String> search(@NonNull MultiValueMap<String, String> requestParams, Function<NsdPackage, U> clazz, Consumer<U> makeLink, Class<U> frontClass);
 
 	/**
 	 * Delete an individual NS descriptor resource.
@@ -51,7 +51,7 @@ public interface NsDescriptorGenericFrontController {
 	 * operationalState &#x3D; DISABLED). Otherwise, the DELETE method shall fail.
 	 *
 	 */
-	ResponseEntity<Void> delete(@Nonnull String nsdInfoId);
+	ResponseEntity<Void> delete(@NonNull String nsdInfoId);
 
 	/**
 	 * Read information about an individual NS descriptor resource.
@@ -62,7 +62,7 @@ public interface NsDescriptorGenericFrontController {
 	 * request and response data structures, and response codes.\&quot;
 	 *
 	 */
-	<U> ResponseEntity<U> finsById(@Nonnull String nsdInfoId, Function<NsdPackage, U> clazz, Consumer<U> makeLink);
+	<U> ResponseEntity<U> finsById(@NonNull String nsdInfoId, Function<NsdPackage, U> clazz, Consumer<U> makeLink);
 
 	/**
 	 * Fetch the content of a NSD.
@@ -85,7 +85,7 @@ public interface NsDescriptorGenericFrontController {
 	 * outside the scope of the present document.
 	 *
 	 */
-	ResponseEntity<Resource> getNsdContent(@Nonnull String nsdInfoId, String accept);
+	ResponseEntity<Resource> getNsdContent(@NonNull String nsdInfoId, String accept);
 
 	/**
 	 * Upload the content of a NSD.
@@ -106,7 +106,7 @@ public interface NsDescriptorGenericFrontController {
 	 * response data structures, and response codes.\&quot;
 	 *
 	 */
-	ResponseEntity<Void> putNsdContent(@Nonnull String nsdInfoId, String accept, InputStreamSource file);
+	ResponseEntity<Void> putNsdContent(@NonNull String nsdInfoId, String accept, InputStreamSource file);
 
 	/**
 	 * Modify the operational state and/or the user defined data of an individual NS
@@ -124,7 +124,7 @@ public interface NsDescriptorGenericFrontController {
 	 * descriptor resource.
 	 *
 	 */
-	<U> ResponseEntity<U> modify(@Nonnull String nsdInfoId, String body, String ifMatch, Function<NsdPackage, U> func, Consumer<U> makeLink);
+	<U> ResponseEntity<U> modify(@NonNull String nsdInfoId, String body, String ifMatch, Function<NsdPackage, U> func, Consumer<U> makeLink);
 
 	/**
 	 * Create a new NS descriptor resource.
@@ -135,10 +135,10 @@ public interface NsDescriptorGenericFrontController {
 	 */
 	<U> ResponseEntity<U> create(String contentType, Map<String, String> userDefinedData, Function<NsdPackage, U> func, Consumer<U> makeLink, Function<U, String> getSelfLink);
 
-	ResponseEntity<Resource> getArtifact(@Nonnull String nsdInfoId, String artifactPath, String includeSignatures);
+	ResponseEntity<Resource> getArtifact(@NonNull String nsdInfoId, String artifactPath, String includeSignatures);
 
-	ResponseEntity<Resource> getManifest(@Nonnull String nsdInfoId, String includeSignatures);
+	ResponseEntity<Resource> getManifest(@NonNull String nsdInfoId, String includeSignatures);
 
-	ResponseEntity<Resource> getNsd(@Nonnull String nsdInfoId, String includeSignatures);
+	ResponseEntity<Resource> getNsd(@NonNull String nsdInfoId, String includeSignatures);
 
 }

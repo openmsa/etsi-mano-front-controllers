@@ -25,7 +25,7 @@ import org.springframework.util.MultiValueMap;
 
 import com.ubiqube.etsi.mano.service.event.model.Subscription;
 
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public interface VnfLcmSubscriptionFrontController {
 

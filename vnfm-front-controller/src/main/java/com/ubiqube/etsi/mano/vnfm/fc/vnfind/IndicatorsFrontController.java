@@ -24,7 +24,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.ubiqube.etsi.mano.dao.mano.VnfIndicator;
 
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public interface IndicatorsFrontController {
 
